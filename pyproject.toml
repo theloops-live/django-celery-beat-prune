@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-celery-beat-prune"
+version = "1.0.0"
+description = "Make CELERY_BEAT_SCHEDULE authoritative for django-celery-beat: a periodic task removed from settings stops running instead of living on as a database row."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [{ name = "TheLoops", email = "support@theloops.live" }]
+keywords = ["django", "celery", "celery-beat", "django-celery-beat", "periodic-tasks", "scheduler"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Framework :: Django",
+    "Framework :: Celery",
+    "Operating System :: OS Independent",
+    "Topic :: System :: Distributed Computing",
+]
+dependencies = ["django-celery-beat>=2.5", "celery>=5.3", "Django>=4.2"]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "pytest-django>=4.5"]
+
+[project.urls]
+Homepage = "https://theloops.live/engineering/django-celery-beat-prune"
+Source = "https://github.com/theloops-live/django-celery-beat-prune"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+markers = ["live: starts a real celery beat process"]
